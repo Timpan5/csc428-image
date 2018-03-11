@@ -1,8 +1,8 @@
 import { fromJS } from 'immutable';
-import { SET_MAIN_IMAGE_INDEX, SET_INITIAL_IMAGES, KEY_PRESS_CATEGORIZE, KEY_PRESS_CONFIRM }
-  from '../constants/imageCategorizationConstants';
+import { SET_MAIN_IMAGE_INDEX, SET_INITIAL_IMAGES, KEY_PRESS_CATEGORIZE, KEY_PRESS_CONFIRM, CHANGE_PAGE,
+ INTRODUCTION_PAGE, CATEGORIZATION_PAGE, RESULT_PAGE } from '../constants/imageCategorizationConstants';
 
-const IMG_INDEX_MAX = 153;
+const IMG_INDEX_MAX = 4;
 
 function generateInitialRandomImageOrder() {
   var arr =  Array.from(new Array(IMG_INDEX_MAX), (x, i) => i + 1);
@@ -14,6 +14,7 @@ function generateInitialRandomImageOrder() {
 }
 
 const initialStoreState = fromJS({
+  page: INTRODUCTION_PAGE,
   imageIndexList: generateInitialRandomImageOrder(),
   sortedImages: {},
 });
@@ -41,13 +42,14 @@ function keyPressConfirm(state) {
   const categorySelection = state.get('categorySelection');
   const nextImgIndex = state.get('imageIndexList').first();
 
-  if (mainImageIndex) {
+  if (mainImageIndex && categorySelection) {
     return state.withMutations((state) => state
       .update('sortedImages', (sortedImages) => sortedImages.set(mainImageIndex, categorySelection))
       .update('imageIndexList', (list) => list.shift())
       .update('topImageIndex', (top) => top == mainImageIndex ? nextImgIndex : top)
       .update('middleImageIndex', (middle) => middle == mainImageIndex ? nextImgIndex : middle)
       .update('bottomImageIndex', (bot) => bot == mainImageIndex ? nextImgIndex : bot)
+      .update('page', (page) => state.get('sortedImages').size == IMG_INDEX_MAX ? RESULT_PAGE : page)
     )
       .delete('mainImageIndex')
       .delete('categorySelection');
@@ -55,6 +57,10 @@ function keyPressConfirm(state) {
   else {
     return state;
   }
+}
+
+function changePage(state, action) {
+  return state.set('page', action.page);
 }
 
 const store = (state = initialStoreState, action) => {
@@ -67,6 +73,8 @@ const store = (state = initialStoreState, action) => {
       return keyPressCategorize(state, action);
     case KEY_PRESS_CONFIRM:
       return keyPressConfirm(state);
+    case CHANGE_PAGE:
+      return changePage(state, action);
     default:
       return state;
   }

@@ -1,45 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import functional from 'react-functional';
 import ImageSectionContainer from '../containers/ImageSectionContainer';
 import ImageMainContainer from '../containers/ImageMainContainer';
-
-function attachKeyListener(handleCategoryA, handleCategoryS, handleCategoryD, handleSpace) {
-  window.addEventListener('keydown', function (e) {
-    switch(e.key) {
-      case 'a':
-        handleCategoryA();
-        break;
-      case 's':
-        handleCategoryS();
-        break;
-      case 'd':
-        handleCategoryD();
-        break;
-      case ' ':
-        handleSpace();
-        break;
-    }
-  });
-}
+import IntroductionContainer from '../containers/IntroductionContainer';
+import ResultsContainer from '../containers/ResultsContainer';
 
 function ImageCategorization(props) {
-  attachKeyListener(props.handleCategoryA, props.handleCategoryS, props.handleCategoryD, props.handleSpace);
-
   return (
     <div>
-      <ImageSectionContainer />
-      <ImageMainContainer />
-      <button onClick={props.setInitialImages}>Init</button>
+      {props.showIntroduction && <IntroductionContainer />}
+      {props.showCategorization && <ImageSectionContainer />}
+      {props.showCategorization && <ImageMainContainer />}
+      {props.showResults && <ResultsContainer />}
     </div>
   );
 }
 
+ImageCategorization.componentDidMount = (props) => props.addKeyListener();
+
+ImageCategorization.componentWillUnmount = (props) => props.removeKeyListener();
+
 ImageCategorization.propTypes = {
-  setInitialImages: PropTypes.func.isRequired,
-  handleCategoryA: PropTypes.func.isRequired,
-  handleCategoryS: PropTypes.func.isRequired,
-  handleCategoryD: PropTypes.func.isRequired,
-  handleSpace: PropTypes.func.isRequired,
+  showIntroduction: PropTypes.bool.isRequired,
+  showCategorization: PropTypes.bool.isRequired,
+  showResults: PropTypes.bool.isRequired,
+  addKeyListener: PropTypes.func.isRequired,
+  removeKeyListener: PropTypes.func.isRequired,
 };
 
-export default ImageCategorization;
+export default functional(ImageCategorization);

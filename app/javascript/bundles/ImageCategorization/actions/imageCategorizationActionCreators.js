@@ -17,3 +17,8 @@ export const keyPressCategorize = (key) => ({
 export const keyPressConfirm = () => ({
   type: constants.KEY_PRESS_CONFIRM,
 });
+
+export const changePage = (page) => ({
+  type: constants.CHANGE_PAGE,
+  page,
+});
