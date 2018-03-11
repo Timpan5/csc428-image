@@ -1,7 +1,18 @@
 import { connect } from 'react-redux';
 import ImageCategorization from '../components/ImageCategorization';
-import { setInitialImages } from '../actions/imageCategorizationActionCreators';
+import { setInitialImages, keyPressCategorize, keyPressConfirm }
+  from '../actions/imageCategorizationActionCreators';
 
-const actions = { setInitialImages };
+const actions = { setInitialImages, keyPressCategorize, keyPressConfirm };
 
-export default connect(null, actions)(ImageCategorization);
+function mergeProps(stateProps, dispatchProps) {
+  return {
+    setInitialImages: dispatchProps.setInitialImages,
+    handleCategoryA: () => dispatchProps.keyPressCategorize('a'),
+    handleCategoryS: () => dispatchProps.keyPressCategorize('s'),
+    handleCategoryD: () => dispatchProps.keyPressCategorize('d'),
+    handleSpace: dispatchProps.keyPressConfirm,
+  };
+}
+
+export default connect(null, actions, mergeProps)(ImageCategorization);
