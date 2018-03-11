@@ -1,6 +1,10 @@
-import { IMAGE_CATEGORIZATION_NAME_UPDATE } from '../constants/imageCategorizationConstants';
+import * as constants from '../constants/imageCategorizationConstants';
 
-export const updateName = (text) => ({
-  type: IMAGE_CATEGORIZATION_NAME_UPDATE,
-  text,
+export const setMainImageIndex = (index) => ({
+  type: constants.SET_MAIN_IMAGE_INDEX,
+  index,
+});
+
+export const setInitialImages = () => ({
+  type: constants.SET_INITIAL_IMAGES,
 });
