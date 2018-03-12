@@ -2,7 +2,7 @@ import { fromJS } from 'immutable';
 import { SET_MAIN_IMAGE_INDEX, SET_INITIAL_IMAGES, KEY_PRESS_CATEGORIZE, KEY_PRESS_CONFIRM, CHANGE_PAGE,
  INTRODUCTION_PAGE, CATEGORIZATION_PAGE, RESULT_PAGE } from '../constants/imageCategorizationConstants';
 
-const IMG_INDEX_MAX = 100;
+const IMG_INDEX_MAX = 50;
 
 function generateInitialRandomImageOrder() {
   var arr =  Array.from(new Array(IMG_INDEX_MAX), (x, i) => i + 1);
