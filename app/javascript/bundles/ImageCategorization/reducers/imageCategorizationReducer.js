@@ -2,7 +2,7 @@ import { fromJS } from 'immutable';
 import { SET_MAIN_IMAGE_INDEX, SET_INITIAL_IMAGES, KEY_PRESS_CATEGORIZE, KEY_PRESS_CONFIRM, CHANGE_PAGE,
  INTRODUCTION_PAGE, CATEGORIZATION_PAGE, RESULT_PAGE } from '../constants/imageCategorizationConstants';
 
-const IMG_INDEX_MAX = 4;
+const IMG_INDEX_MAX = 100;
 
 function generateInitialRandomImageOrder() {
   var arr =  Array.from(new Array(IMG_INDEX_MAX), (x, i) => i + 1);
@@ -50,8 +50,8 @@ function keyPressConfirm(state) {
       .update('middleImageIndex', (middle) => middle == mainImageIndex ? nextImgIndex : middle)
       .update('bottomImageIndex', (bot) => bot == mainImageIndex ? nextImgIndex : bot)
       .update('page', (page) => state.get('sortedImages').size == IMG_INDEX_MAX ? RESULT_PAGE : page)
+      .set('mainImageIndex', nextImgIndex)
     )
-      .delete('mainImageIndex')
       .delete('categorySelection');
   }
   else {

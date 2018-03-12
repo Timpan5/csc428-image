@@ -2,9 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Img from '../components/Img';
 
+function renderPlaceholder() {
+  return (
+    <div className='placeholder'></div>
+  );
+}
+
 function ImageSection(props) {
   function renderThumbnailImage(index) {
-    return index ? (<Img index={index} setMainImageIndex={() => props.setMainImageIndex(index)} />) : null;
+    return index ?
+      (<Img index={index} setMainImageIndex={() => props.setMainImageIndex(index)} />) : renderPlaceholder();
   }
 
   return (
