@@ -1,8 +1,8 @@
 default: &default
-  adapter: postgresql
-  username:
-  password:
-  host: localhost
+  adapter: sqlite3
+  database: db/db_dev_db.sqlite3
+  pool: 5
+  timeout: 5000
 
 development:
   <<: *default
