@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function Img(props) {
-  const src = `/images/img${props.index}.jpg`;
+  const src = props.index ? `/images/img${props.index}.jpg` : `/images/${props.name}.jpg`;
 
   return(
     <span>
@@ -12,7 +12,8 @@ function Img(props) {
 }
 
 Img.propTypes = {
-  index: PropTypes.number.isRequired,
+  index: PropTypes.number,
+  name: PropTypes.string,
   setMainImageIndex: PropTypes.func,
 };
 

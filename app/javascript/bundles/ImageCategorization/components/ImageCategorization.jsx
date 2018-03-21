@@ -5,11 +5,13 @@ import ImageSectionContainer from '../containers/ImageSectionContainer';
 import ImageMainContainer from '../containers/ImageMainContainer';
 import IntroductionContainer from '../containers/IntroductionContainer';
 import ResultsContainer from '../containers/ResultsContainer';
+import ImageCategoryContainer from '../containers/ImageCategoryContainer';
 
 function ImageCategorization(props) {
   return (
     <div>
       {props.showIntroduction && <IntroductionContainer />}
+      {props.showCategorization && <ImageCategoryContainer />}
       {props.showCategorization && <ImageSectionContainer />}
       {props.showCategorization && <ImageMainContainer />}
       {props.showResults && <ResultsContainer />}
