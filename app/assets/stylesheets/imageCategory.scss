@@ -1,8 +1,7 @@
-#image-main {
-  padding: 5px 0;
+#image-category {
+  display: flex;
+  flex-direction: column;
   float: left;
-  height: 99vh;
-  max-width: 59vw;
 
   img {
     max-width: 100%;
@@ -12,5 +11,6 @@
   span {
     height: 33vh;
     padding: 5px;
+    flex-grow: 1;
   }
 }
