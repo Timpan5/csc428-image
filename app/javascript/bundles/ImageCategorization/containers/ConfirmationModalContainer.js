@@ -1,12 +1,8 @@
 import { connect } from 'react-redux';
 import ConfirmationModal from '../components/ConfirmationModal';
 import { deleteCategorySelected, keyPressConfirm } from '../actions/imageCategorizationActionCreators';
+import { KEY_TO_CATEGORY_NAME } from '../constants/imageCategorizationConstants';
 
-const KEY_TO_CATEGORY_NAME = {
-  a: 'Trees',
-  s: 'People',
-  d: 'Other',
-};
 
 const actions = { deleteCategorySelected, keyPressConfirm };
 

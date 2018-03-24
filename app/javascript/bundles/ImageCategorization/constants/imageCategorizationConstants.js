@@ -8,3 +8,9 @@ export const DELETE_CATEGORY_SELECTED = 'DELETE_CATEGORY_SELECTED';
 export const INTRODUCTION_PAGE = 'INTRODUCTION_PAGE';
 export const CATEGORIZATION_PAGE = 'CATEGORIZATION_PAGE';
 export const RESULT_PAGE = 'RESULT_PAGE';
+
+export const KEY_TO_CATEGORY_NAME = {
+  a: 'Trees',
+  s: 'People',
+  d: 'Other',
+};
