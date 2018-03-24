@@ -11,7 +11,10 @@ function renderPlaceholder() {
 function ImageSection(props) {
   function renderThumbnailImage(index) {
     return index ?
-      (<Img index={index} setMainImageIndex={() => props.setMainImageIndex(index)} />) : renderPlaceholder();
+      (<Img
+        draggable
+        index={index}
+        setMainImageIndex={() => props.setMainImageIndex(index)} />) : renderPlaceholder();
   }
 
   return (

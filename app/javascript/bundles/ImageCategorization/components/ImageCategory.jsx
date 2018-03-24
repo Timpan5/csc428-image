@@ -5,9 +5,9 @@ import Img from '../components/Img';
 function ImageCategory(props) {
   return (
     <div id='image-category'>
-      <Img name={props.categoryTopName} />
-      <Img name={props.categoryMiddleName} />
-      <Img name={props.categoryBottomName} />
+      <Img name={props.categoryTopName} draggable={false} />
+      <Img name={props.categoryMiddleName} draggable={false} />
+      <Img name={props.categoryBottomName} draggable={false} />
     </div>
   );
 }
