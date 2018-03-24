@@ -7,6 +7,7 @@ import IntroductionContainer from '../containers/IntroductionContainer';
 import ResultsContainer from '../containers/ResultsContainer';
 import ImageCategoryContainer from '../containers/ImageCategoryContainer';
 import ImageDragPreload from '../components/ImageDragPreload';
+import ConfirmationModalContainer from '../containers/ConfirmationModalContainer';
 
 function ImageCategorization(props) {
   return (
@@ -17,6 +18,7 @@ function ImageCategorization(props) {
       {props.showCategorization && <ImageMainContainer />}
       {props.showResults && <ResultsContainer />}
       <ImageDragPreload />
+      <ConfirmationModalContainer />
     </div>
   );
 }

@@ -22,3 +22,7 @@ export const changePage = (page) => ({
   type: constants.CHANGE_PAGE,
   page,
 });
+
+export const deleteCategorySelected = () => ({
+  type: constants.DELETE_CATEGORY_SELECTED,
+});

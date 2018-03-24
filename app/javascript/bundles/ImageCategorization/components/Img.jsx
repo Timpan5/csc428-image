@@ -20,6 +20,9 @@ function Img(props) {
         onMouseEnter={props.setMainImageIndex}
         draggable={props.draggable}
         onDragStart={onDragStartHandler}
+        onDragOver={props.onDragOver}
+        onDrop={props.onDrop}
+        className={props.className}
       />
     </span>
   );
@@ -31,6 +34,9 @@ Img.propTypes = {
   setMainImageIndex: PropTypes.func,
   draggable: PropTypes.bool,
   onDragStart: PropTypes.func,
+  onDragOver: PropTypes.func,
+  onDrop: PropTypes.func,
+  className: PropTypes.string,
 };
 
 export default Img;

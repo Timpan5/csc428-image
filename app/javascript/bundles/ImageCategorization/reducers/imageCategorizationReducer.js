@@ -1,8 +1,9 @@
 import { fromJS } from 'immutable';
 import { SET_MAIN_IMAGE_INDEX, SET_INITIAL_IMAGES, KEY_PRESS_CATEGORIZE, KEY_PRESS_CONFIRM, CHANGE_PAGE,
- INTRODUCTION_PAGE, CATEGORIZATION_PAGE, RESULT_PAGE } from '../constants/imageCategorizationConstants';
+  INTRODUCTION_PAGE, CATEGORIZATION_PAGE, RESULT_PAGE, DELETE_CATEGORY_SELECTED }
+  from '../constants/imageCategorizationConstants';
 
-const IMG_INDEX_MAX = 50;
+const IMG_INDEX_MAX = 3;
 
 function generateInitialRandomImageOrder() {
   var arr =  Array.from(new Array(IMG_INDEX_MAX), (x, i) => i + 1);
@@ -63,6 +64,10 @@ function changePage(state, action) {
   return state.set('page', action.page);
 }
 
+function deleteCategorySelected(state) {
+  return state.delete('categorySelection');
+}
+
 const store = (state = initialStoreState, action) => {
   switch (action.type) {
     case SET_MAIN_IMAGE_INDEX:
@@ -75,6 +80,8 @@ const store = (state = initialStoreState, action) => {
       return keyPressConfirm(state);
     case CHANGE_PAGE:
       return changePage(state, action);
+    case DELETE_CATEGORY_SELECTED:
+      return deleteCategorySelected(state);
     default:
       return state;
   }
