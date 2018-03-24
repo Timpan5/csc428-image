@@ -4,13 +4,12 @@ import PropTypes from 'prop-types';
 function Img(props) {
   const src = props.index ? `/images/large/img${props.index}.jpg` : `/images/${props.name}.jpg`;
 
-//does not seem to work first time
   function onDragStartHandler(ev) {
     if (props.draggable) {
       ev.dataTransfer.setData("text/plain", "foo");
-      var img = new Image(500, 500);
+      var img = new Image();
       img.src = `/images/small/img${props.index}.jpg`;
-      ev.dataTransfer.setDragImage(img, 50, 50);
+      ev.dataTransfer.setDragImage(img, 100, 75);
     }
   }
 
