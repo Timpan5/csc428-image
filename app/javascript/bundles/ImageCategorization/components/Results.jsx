@@ -36,7 +36,7 @@ function Results(props) {
       contents: uploadText,
       mode: { ".tag": "overwrite" },
       autorename: false
-    }).then((data) => { console.log(data); })
+    }).then((data) => { console.log(data); alert('Submit Success'); })
       .catch((error) => { console.error(error); })
   }
 

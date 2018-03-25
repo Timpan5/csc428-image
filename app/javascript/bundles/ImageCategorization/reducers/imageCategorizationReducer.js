@@ -3,7 +3,7 @@ import { SET_MAIN_IMAGE_INDEX, SET_INITIAL_IMAGES, KEY_PRESS_CATEGORIZE, KEY_PRE
   INTRODUCTION_PAGE, CATEGORIZATION_PAGE, RESULT_PAGE, DELETE_CATEGORY_SELECTED, BEGIN_TIME, SET_CONFIRMATION_MESSAGE }
   from '../constants/imageCategorizationConstants';
 
-const IMG_INDEX_MAX = 5;
+const IMG_INDEX_MAX = 30;
 
 function generateInitialRandomImageOrder() {
   var arr =  Array.from(new Array(IMG_INDEX_MAX), (x, i) => i + 1);
