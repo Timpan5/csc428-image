@@ -31,3 +31,8 @@ export const beginTime = (date) => ({
   type: constants.BEGIN_TIME,
   date,
 });
+
+export const setConfirmationMessage = (bool) => ({
+  type: constants.SET_CONFIRMATION_MESSAGE,
+  bool,
+});

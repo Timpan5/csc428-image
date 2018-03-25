@@ -1,9 +1,16 @@
 import { connect } from 'react-redux';
 import Introduction from '../components/Introduction';
-import { setInitialImages, changePage, beginTime } from '../actions/imageCategorizationActionCreators';
+import { setInitialImages, changePage, beginTime, setConfirmationMessage }
+  from '../actions/imageCategorizationActionCreators';
 import { CATEGORIZATION_PAGE } from '../constants/imageCategorizationConstants';
 
-const actions = { setInitialImages, changePage, beginTime };
+const actions = { setInitialImages, changePage, beginTime, setConfirmationMessage };
+
+function mapStateToProps(state) {
+  return {
+    confirmationMessage: state.get('confirmationMessage'),
+  };
+}
 
 function mergeProps(stateProps, dispatchProps) {
   const beginButtonClickHandler = () => {
@@ -14,7 +21,9 @@ function mergeProps(stateProps, dispatchProps) {
 
   return {
     beginButtonClickHandler,
+    confirmationMessage: stateProps.confirmationMessage,
+    setConfirmationMessage: dispatchProps.setConfirmationMessage,
   };
 }
 
-export default connect(null, actions, mergeProps)(Introduction);
+export default connect(mapStateToProps, actions, mergeProps)(Introduction);
