@@ -3,7 +3,7 @@ import { SET_MAIN_IMAGE_INDEX, SET_INITIAL_IMAGES, KEY_PRESS_CATEGORIZE, KEY_PRE
   INTRODUCTION_PAGE, CATEGORIZATION_PAGE, RESULT_PAGE, DELETE_CATEGORY_SELECTED }
   from '../constants/imageCategorizationConstants';
 
-const IMG_INDEX_MAX = 1;
+const IMG_INDEX_MAX = 5;
 
 function generateInitialRandomImageOrder() {
   var arr =  Array.from(new Array(IMG_INDEX_MAX), (x, i) => i + 1);
@@ -18,6 +18,8 @@ const initialStoreState = fromJS({
   page: INTRODUCTION_PAGE,
   imageIndexList: generateInitialRandomImageOrder(),
   sortedImages: {},
+  score: 0,
+  confirmationMessage: true,
 });
 
 function setMainImageIndex(state, action) {
@@ -42,6 +44,9 @@ function keyPressConfirm(state) {
   const mainImageIndex = state.get('mainImageIndex');
   const categorySelection = state.get('categorySelection');
   const nextImgIndex = state.get('imageIndexList').first();
+  const increaseScore = (mainImageIndex < 11 && categorySelection == 'a')
+    || (mainImageIndex >= 11 && mainImageIndex < 21 && categorySelection =='s')
+    || (mainImageIndex >= 21 && categorySelection =='d');
 
   if (mainImageIndex && categorySelection) {
     return state.withMutations((state) => state
@@ -52,6 +57,7 @@ function keyPressConfirm(state) {
       .update('bottomImageIndex', (bot) => bot == mainImageIndex ? nextImgIndex : bot)
       .update('page', (page) => state.get('sortedImages').size == IMG_INDEX_MAX ? RESULT_PAGE : page)
       .set('mainImageIndex', nextImgIndex)
+      .update('score', (score) => increaseScore ? score + 1 : score)
     )
       .delete('categorySelection');
   }

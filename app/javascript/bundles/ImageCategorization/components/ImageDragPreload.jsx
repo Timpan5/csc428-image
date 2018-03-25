@@ -1,8 +1,8 @@
 import React from 'react';
 
 function generateImages() {
-  return Array(50).fill().map((_, i)=> {
-    return (<img src={`/images/small/img${i + 1}.jpg`} key={i + 1} />);
+  return Array(30).fill().map((_, i)=> {
+    return (<img src={`/images/small/pic${i + 1}.jpg`} key={i + 1} />);
   })
 }
 
