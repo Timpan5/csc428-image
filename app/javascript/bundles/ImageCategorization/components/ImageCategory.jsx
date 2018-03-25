@@ -10,6 +10,7 @@ function ImageCategory(props) {
   function dropHandler(ev) {
     ev.preventDefault();
     props.keyPressCategorize(ev.target.className);
+    props.confirmationMessage ? null : props.keyPressConfirm();
   }
 
   return (
@@ -26,6 +27,8 @@ ImageCategory.propTypes = {
   categoryMiddleName: PropTypes.string.isRequired,
   categoryBottomName: PropTypes.string.isRequired,
   keyPressCategorize: PropTypes.func.isRequired,
+  keyPressConfirm: PropTypes.func.isRequired,
+  confirmationMessage: PropTypes.bool.isRequired,
 };
 
 export default ImageCategory;
