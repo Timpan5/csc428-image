@@ -27,8 +27,8 @@ function ConfirmationModal(props) {
         <h2>Confirm</h2>
         <div>{`Add image to ${props.categoryString} category?`}</div>
         <div id="buttons-container">
-          <button id="no-button" onClick={props.noButtonHandler}>No</button>
-          <button id="yes-button" onClick={props.yesButtonHandler}>Yes</button>
+          <button id="no-button" className="btn btn-warning" onClick={props.noButtonHandler}>No</button>
+          <button id="yes-button" className="btn btn-success" onClick={props.yesButtonHandler}>Yes</button>
         </div>
       </div>
     </Modal>

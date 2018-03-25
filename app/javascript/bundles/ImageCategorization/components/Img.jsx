@@ -22,6 +22,7 @@ function Img(props) {
         onDragOver={props.onDragOver}
         onDrop={props.onDrop}
         className={props.className}
+        onDragLeave={props.dragLeave}
       />
     </span>
   );
@@ -36,6 +37,7 @@ Img.propTypes = {
   onDragOver: PropTypes.func,
   onDrop: PropTypes.func,
   className: PropTypes.string,
+  dragLeave: PropTypes.func,
 };
 
 export default Img;
