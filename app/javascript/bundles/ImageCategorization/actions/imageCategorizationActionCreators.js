@@ -26,3 +26,8 @@ export const changePage = (page) => ({
 export const deleteCategorySelected = () => ({
   type: constants.DELETE_CATEGORY_SELECTED,
 });
+
+export const beginTime = (date) => ({
+  type: constants.BEGIN_TIME,
+  date,
+});

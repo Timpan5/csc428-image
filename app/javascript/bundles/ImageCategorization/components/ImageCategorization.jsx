@@ -23,16 +23,20 @@ function ImageCategorization(props) {
   );
 }
 
-ImageCategorization.componentDidMount = (props) => props.addKeyListener();
-
-ImageCategorization.componentWillUnmount = (props) => props.removeKeyListener();
+// ImageCategorization.componentDidMount = (props) => {
+//   props.addKeyListener();
+// }
+//
+// ImageCategorization.componentWillUnmount = (props) => {
+//   props.removeKeyListener();
+// }
 
 ImageCategorization.propTypes = {
   showIntroduction: PropTypes.bool.isRequired,
   showCategorization: PropTypes.bool.isRequired,
   showResults: PropTypes.bool.isRequired,
-  addKeyListener: PropTypes.func.isRequired,
-  removeKeyListener: PropTypes.func.isRequired,
+  // addKeyListener: PropTypes.func.isRequired,
+  // removeKeyListener: PropTypes.func.isRequired,
 };
 
 export default functional(ImageCategorization);

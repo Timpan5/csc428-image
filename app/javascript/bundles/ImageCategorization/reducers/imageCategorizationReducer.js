@@ -1,6 +1,6 @@
 import { fromJS } from 'immutable';
 import { SET_MAIN_IMAGE_INDEX, SET_INITIAL_IMAGES, KEY_PRESS_CATEGORIZE, KEY_PRESS_CONFIRM, CHANGE_PAGE,
-  INTRODUCTION_PAGE, CATEGORIZATION_PAGE, RESULT_PAGE, DELETE_CATEGORY_SELECTED }
+  INTRODUCTION_PAGE, CATEGORIZATION_PAGE, RESULT_PAGE, DELETE_CATEGORY_SELECTED, BEGIN_TIME, END_TIME }
   from '../constants/imageCategorizationConstants';
 
 const IMG_INDEX_MAX = 5;
@@ -56,6 +56,7 @@ function keyPressConfirm(state) {
       .update('middleImageIndex', (middle) => middle == mainImageIndex ? nextImgIndex : middle)
       .update('bottomImageIndex', (bot) => bot == mainImageIndex ? nextImgIndex : bot)
       .update('page', (page) => state.get('sortedImages').size == IMG_INDEX_MAX ? RESULT_PAGE : page)
+      .set('endTime', state.get('sortedImages').size == IMG_INDEX_MAX ? new Date : null)
       .set('mainImageIndex', nextImgIndex)
       .update('score', (score) => increaseScore ? score + 1 : score)
     )
@@ -74,6 +75,10 @@ function deleteCategorySelected(state) {
   return state.delete('categorySelection');
 }
 
+function beginTime(state, action) {
+  return state.set('beginTime', action.date);
+}
+
 const store = (state = initialStoreState, action) => {
   switch (action.type) {
     case SET_MAIN_IMAGE_INDEX:
@@ -88,6 +93,8 @@ const store = (state = initialStoreState, action) => {
       return changePage(state, action);
     case DELETE_CATEGORY_SELECTED:
       return deleteCategorySelected(state);
+    case BEGIN_TIME:
+      return beginTime(state, action);
     default:
       return state;
   }

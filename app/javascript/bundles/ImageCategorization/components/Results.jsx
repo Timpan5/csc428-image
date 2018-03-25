@@ -28,16 +28,11 @@ function generateResultsTable(results) {
 }
 
 function Results(props) {
-  //score
-  //time
-  //results dump
-  //confirmation or no
-
   function submitHandler() {
-    const uploadText = `Score: ${props.score}\nConfirmation: ${props.confirmationMessage}\n`;
+    const uploadText = `Score: ${props.score}\nSeconds: ${props.secondsElapsed}\nConfirmation: ${props.confirmationMessage}\nResults: ${props.results}`;
 
     dbx.filesUpload({
-      path: '/CSC428/test.txt',
+      path: `/CSC428/${v4()}.txt`,
       contents: uploadText,
       mode: { ".tag": "overwrite" },
       autorename: false
@@ -65,6 +60,7 @@ Results.propTypes = {
   results: PropTypes.object.isRequired,
   score: PropTypes.number.isRequired,
   confirmationMessage: PropTypes.bool.isRequired,
+  secondsElapsed: PropTypes.number.isRequired,
 }
 
 export default Results;
