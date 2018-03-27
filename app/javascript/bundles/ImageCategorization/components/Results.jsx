@@ -27,9 +27,23 @@ function generateResultsTable(results) {
   );
 }
 
+function countByCategory(results) {
+  const countCategoryA = results.filter((category) => category === 'a');
+  const countCategoryS = results.filter((category) => category === 's');
+  const countCategoryD = results.filter((category) => category === 'd');
+
+  return {
+    categoryA: countCategoryA.count(),
+    categoryS: countCategoryS.count(),
+    categoryD: countCategoryD.count(),
+  };
+}
+
 function Results(props) {
   function submitHandler() {
-    const uploadText = `Score: ${props.score}\nSeconds: ${props.secondsElapsed}\nConfirmation: ${props.confirmationMessage}\nResults: ${props.results}`;
+    const counts = countByCategory(props.results);
+
+    const uploadText = `Score: ${props.score}\nSeconds: ${props.secondsElapsed}\nConfirmation: ${props.confirmationMessage}\nCounts: ${JSON.stringify(counts)}\nResults: ${props.results}`;
 
     dbx.filesUpload({
       path: `/CSC428/${v4()}.txt`,
